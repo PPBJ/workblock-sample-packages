@@ -1,0 +1,45 @@
+{
+  "Schema": 1,
+  "Id": "6f1d2c3a-8b4e-4f7a-9c21-5d0e7a9b3c41",
+  "Version": "1.0.0",
+  "Title": "Hello Research - 주제 요약과 검토",
+  "Description": "사용자가 붙여 넣은 공개 자료를 핵심 사실 목록으로 정리하고, 두 번째 AI가 빠진 근거와 과장된 주장을 점검하는 2단계 예제 구성입니다. WORKBLOCK v2 GitHub 마켓 예제입니다.",
+  "Author": "WORKBLOCK 예제",
+  "License": "CC0-1.0 - 자유롭게 복사·수정·배포할 수 있습니다.",
+  "Steps": [
+    {
+      "Id": "0b6a4f0e-1c2d-4e5f-8a9b-1c2d3e4f5a61",
+      "Name": "자료 요약",
+      "Prompt": "입력으로 받은 공개 자료를 읽고 핵심 사실을 5개 이하의 글머리표로 정리하세요. 자료에 없는 내용은 추측하지 말고, 각 항목 끝에 근거가 된 문장을 짧게 인용하세요.",
+      "Provider": "Anthropic",
+      "Model": "claude-sonnet-4-5",
+      "Reasoning": "medium",
+      "Surface": "api",
+      "Feature": "chat"
+    },
+    {
+      "Id": "7d3e9a12-5b6c-4d7e-9f80-2a3b4c5d6e72",
+      "Name": "요약 검토",
+      "Prompt": "앞 단계의 요약을 원래 자료와 비교해 근거가 없는 주장, 빠진 핵심 사실, 과장된 표현을 찾아 표로 정리하세요. 문제가 없으면 '문제 없음'이라고만 답하세요.",
+      "Provider": "OpenAI",
+      "Model": "gpt-5",
+      "Reasoning": "low",
+      "Surface": "api",
+      "Feature": "chat"
+    }
+  ],
+  "Links": [
+    {
+      "From": "0b6a4f0e-1c2d-4e5f-8a9b-1c2d3e4f5a61",
+      "To": "7d3e9a12-5b6c-4d7e-9f80-2a3b4c5d6e72",
+      "Comment": "요약 결과를 검토 단계로 전달"
+    }
+  ],
+  "Cases": [
+    {
+      "Id": "basic-summary",
+      "Input": "태양광 패널의 효율은 일반적으로 15~22% 범위이며, 온도가 높아지면 효율이 다소 떨어진다.",
+      "AcceptanceCriteria": "효율 범위와 온도 영향이 모두 요약에 포함되고, 자료에 없는 수치를 만들지 않는다."
+    }
+  ]
+}
